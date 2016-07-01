@@ -128,5 +128,13 @@ can be approximated by calculating
 	p_{\text{T}}^{\text{damaged}} \approx \mathcal{R}(p_{\text{T}}^{\text{healthy}}) p_{\text{T}}^{\text{healthy}}.
 \end{equation}
 The thus obtained $\mathcal{R}(p_{\text{T}}^{\text{damaged}})$ can be used to correct the reconstructed jet $p_{\text{T}}$ from data by multiplication.
-
-
+The extent of the correction is calculated depending on the distance of the jet to the masked module.
+Currently the correction is only supplied for small-R jets.
+Since there is no overlap of the influenced areas for small-R jets, the correction can be separately calculated for the EBC21 and LBA10 module.
+The JetTileCorrectionTool decides whether a jet is influenced by the masked modules and categorizes it into three categories:
+\begin{itemize}
+\item JetTileStatus == 0: Jet is not affected and does not require a correction
+\item JetTileStatus == 1: Jet is affected but can be corrected
+\item JetTileStatus == 2: Jet is core affected and has to be rejected
+\end{itemize}
+In the following the JetTileStatus will be abbrevated as TS.
